@@ -1,0 +1,5 @@
+PG_HOST: mellior.ru
+PG_PORT: 5432
+PG_USERNAME: tx_test
+
+PG_DATABASE: tx_test

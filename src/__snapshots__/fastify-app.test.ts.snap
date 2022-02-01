@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DELETE USERS 200 by UUID 1`] = `
+Object {
+  "status": "ok",
+}
+`;
+
+exports[`DELETE USERS 200 by UUID 2`] = `
+Array [
+  Object {
+    "enabled": true,
+    "type": "email_notification",
+    "userId": "uuid0000-fixe-df04-test-reason6922cd",
+  },
+  Object {
+    "enabled": false,
+    "type": "sms_notification",
+    "userId": "uuid0000-fixe-df04-test-reason6922cd",
+  },
+]
+`;
+
+exports[`GET USERS 200 by UUID 1`] = `
+Object {
+  "consents": Array [],
+  "email": "fixed@email.ru",
+  "id": "uuid0000-fixe-df04-test-reason6922cd",
+}
+`;
+
+exports[`GET USERS 404 by UUID 1`] = `
+Object {
+  "error": "Not Found",
+  "message": "User not found d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "statusCode": 404,
+}
+`;
+
+exports[`GET USERS BAD ID 1`] = `
+Object {
+  "errors": Array [
+    "params/UserId must match format \\"uuid\\"",
+  ],
+  "message": "A validation error: params/UserId must match format \\"uuid\\"",
+  "statusCode": 422,
+}
+`;
+
+exports[`POST USER CONSENT EVENT POST USER CONSENT EVENT check insert insert 1`] = `
+Array [
+  Object {
+    "enabled": false,
+    "type": "email_notification",
+    "userId": "uuid0000-fixe-df04-test-reason6922cd",
+  },
+  Object {
+    "enabled": true,
+    "type": "sms_notification",
+    "userId": "uuid0000-fixe-df04-test-reason6922cd",
+  },
+]
+`;
+
+exports[`POST USER CONSENT EVENT POST USER CONSENT EVENT check insert insert 2`] = `
+Array [
+  Object {
+    "enabled": true,
+    "type": "email_notification",
+    "userId": "uuid0000-fixe-df04-test-reason6922cd",
+  },
+  Object {
+    "enabled": false,
+    "type": "sms_notification",
+    "userId": "uuid0000-fixe-df04-test-reason6922cd",
+  },
+]
+`;
+
+exports[`POST USERS / create BAD EMAIL 1`] = `
+Object {
+  "errors": Array [
+    "body/email must match format \\"email\\"",
+  ],
+  "message": "A validation error: body/email must match format \\"email\\"",
+  "statusCode": 422,
+}
+`;
+
+exports[`POST USERS / create CREATED BY EMAIL 1`] = `
+Object {
+  "consents": Array [],
+  "email": "fixed@email.ru",
+  "id": "uuid0000-fixe-df04-test-reason6922cd",
+}
+`;
+
+exports[`POST USERS / create NO EMAIL 1`] = `
+Object {
+  "errors": Array [
+    "body must have required property 'email'",
+  ],
+  "message": "A validation error: body must have required property 'email'",
+  "statusCode": 422,
+}
+`;

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`users users consent rewrite consent 1`] = `
+Array [
+  Object {
+    "enabled": true,
+    "type": "email_notification",
+    "userId": "uuid0000-fixe-df04-test-reason6922cd",
+  },
+  Object {
+    "enabled": false,
+    "type": "sms_notification",
+    "userId": "uuid0000-fixe-df04-test-reason6922cd",
+  },
+]
+`;
+
+exports[`users users consent set consent 1`] = `
+Array [
+  Object {
+    "enabled": true,
+    "type": "email_notification",
+    "userId": "uuid0000-fixe-df04-test-reason6922cd",
+  },
+]
+`;
+
+exports[`users users consent set second consent 1`] = `
+Array [
+  Object {
+    "enabled": true,
+    "type": "email_notification",
+    "userId": "uuid0000-fixe-df04-test-reason6922cd",
+  },
+  Object {
+    "enabled": true,
+    "type": "sms_notification",
+    "userId": "uuid0000-fixe-df04-test-reason6922cd",
+  },
+]
+`;

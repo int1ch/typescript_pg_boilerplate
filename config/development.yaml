@@ -1,0 +1,15 @@
+
+LOGGING_CONSOLE_LEVEL: debug
+
+PG_HOST: mellior.ru
+PG_PORT: 5432
+PG_USERNAME: tx
+PG_DATABASE: tx_2
+
+PG_TESTING_USERNAME: tx_test
+PG_TESTING_DATABASE: tx_test
+
+
+
+
+

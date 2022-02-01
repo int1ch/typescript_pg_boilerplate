@@ -1,3 +1,3 @@
-import { init, start } from "./server";
+import start from "./fastify-server";
 
-init().then(() => start());
+start();

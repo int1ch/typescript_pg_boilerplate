@@ -1,0 +1,274 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: Localhost 
+    url: http://localhost:4000
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/int1ch/UserConsentsCenterDemo/1.0.0
+info:
+  description: User Consert Center API 
+  version: "1.0.0"
+  title: User Consert Center API 
+  contact:
+    email: mike@mellior.ru
+
+tags:
+  - name: api
+    description: api
+paths:
+  /users/{UserId}:
+    get:
+      tags:
+        - api
+      summary: Get User Info
+      operationId: getUser
+      parameters: 
+        - name: UserId
+          in: path
+          description: ID of User
+          required: true
+          schema: 
+            type: string
+            format: uuid
+      
+      responses:
+        200:
+          description: Returning User Info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserWithConsents'
+        404:
+          description: User Not found
+    delete:
+      tags:
+        - api
+      summary: Delete User
+      operationId: deleteUser
+      parameters:
+        - name: UserId
+          in: path
+          description: ID of User
+          required: true
+          schema: 
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Sucessfully delete user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleOk'
+        404:
+          description: User Not found
+  /users/:             
+    post:
+      tags:
+        - api
+      summary: Update / Create User
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        200:
+          description: User Created Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserWithConsents'
+        422:
+          description: Error in Input Args
+  /events:
+    post:
+      tags:
+        - api
+      summary: Send Consent change Event
+      operationId: postConsent
+      requestBody:
+        required: true
+        description: Json to update user consents
+        content:
+          application/json:
+              schema:
+                $ref: '#/components/schemas/UserConsentEventsCreate'            
+      responses:
+        200:
+          description: Consent changes applied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleOk'
+        422: 
+          description: Error in request json
+  /check/one: 
+    get: 
+      tags:
+        - api
+      summary: 'ok'
+      operationId: anyOk
+      parameters:
+        - name: q
+          in: 'query'
+          required: true 
+          schema:
+            type: string
+      responses:
+        201:
+          description: ok
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: string
+                  power: 
+                    type: string
+                required:
+                  - status
+
+  /check/two:
+    get:
+      tags:
+        - api
+      summary: check error on two errors
+      operationId: anyOk
+      parameters:
+        - name: q1
+          in: 'query'
+          required: true
+          schema:
+            type: string
+        - name: q2
+          in: 'query'
+          required: true
+          schema: 
+            type: number
+      responses:
+        200:
+          description: 'ok'
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties: 
+                  answer:
+                    type: string
+                required:
+                  - answer
+        201:
+          description: 'allmoust ok'
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties: 
+                  question:
+                    type: string
+                required:
+                  - question
+  /check/p/{id1}/{id2}:
+    get: 
+      tags: 
+        - api
+      summary: check param 
+      operationId: anyOk
+      parameters:
+        - name: id1
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: number
+      responses:
+        200:
+          description: ok
+          
+components:
+  schemas:
+    SimpleOk:
+      type: object
+      required: 
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - ok
+          example: ok
+    UserCreate:
+      type: object
+      required:
+        - email
+      properties:
+        email: 
+          type: string
+          format: email
+    UserConsentEventsCreate:
+      type: object
+      required:
+        - user
+        - consents
+      properties:
+        user: 
+          type: object
+          required:
+            - id
+          properties:
+            id: 
+              type: string
+              format: uuid
+        consents:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserConsent'
+    UserConsent:
+      type: object
+      required:
+        - id
+        - enabled
+      properties: 
+        id: 
+          type: string
+          example: sms_notification
+          enum: 
+            - sms_notification
+            - email_notification
+        enabled:
+          type: boolean
+          example: true
+    UserWithConsents:
+      type: object
+      required:
+        - id
+        - email
+        - consents
+      properties:
+        id: 
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        email:
+          type: string
+          format: email
+          example: demo@example.com
+        consents:
+          type: array
+          items: 
+            $ref: '#/components/schemas/UserConsent'
