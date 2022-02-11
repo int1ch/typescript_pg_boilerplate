@@ -1,7 +1,7 @@
-import * as envConfig from "./env-config";
+import ConfigReader from "@int1ch/env-config";
 
 const DEBUG_CONFIG = false;
-const config = envConfig.fromPath(undefined, { debug: DEBUG_CONFIG });
+const config = new ConfigReader({ debug: DEBUG_CONFIG });
 const loggingLevel = ["debug", "info", "warning"];
 //FIXME warn or warning?
 export const ENVIRONMENT = config.get("ENVIRONMENT").required().asString();

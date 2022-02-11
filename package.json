@@ -7,7 +7,6 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "@types/hapi": "^18.0.7",
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.8",
     "@types/uuid": "^8.3.4",
@@ -15,11 +14,11 @@
     "pino-pretty": "^7.3.0",
     "ts-jest": "^27.1.2",
     "ts-node": "^10.4.0",
+    "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.4"
   },
   "dependencies": {
-    "dotenv": "^11.0.0",
-    "env-var": "^7.1.1",
+    "@int1ch/env-config": "^0.1.1",
     "fastify": "https://github.com/int1ch/fastify#8ad65a60260783bbb2650001e9b12fc222fb766c",
     "fastify-openapi-glue": "file:../fastify-openapi-glue",
     "inert": "^5.1.3",

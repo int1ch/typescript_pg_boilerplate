@@ -96,7 +96,7 @@ function fastifyEnvelop(
   descriptor.value = async function (request: FastifyRequest, h: FastifyReply) {
     try {
       const response = await method.apply(this, arguments);
-      console.info("Evelop response SEND", response);
+      //console.info("Envelop response SEND", response);
       // on answer
       // { ok: true }
       // get unknown error "status" is required

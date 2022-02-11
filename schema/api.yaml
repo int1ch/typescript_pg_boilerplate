@@ -205,13 +205,11 @@ components:
     SimpleOk:
       type: object
       required: 
-        - status
+        - ok
       properties:
-        status:
-          type: string
-          enum:
-            - ok
-          example: ok
+        ok:
+          type: boolean
+          example: true
     UserCreate:
       type: object
       required:

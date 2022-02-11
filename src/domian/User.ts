@@ -198,6 +198,7 @@ function viewSimpleOk() {
   //FIXME STUPID STATUS
   return {
     ok: true,
+
     //status: "ok",
   };
 }

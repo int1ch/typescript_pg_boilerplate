@@ -2,23 +2,8 @@
 
 exports[`DELETE USERS 200 by UUID 1`] = `
 Object {
-  "status": "ok",
+  "ok": true,
 }
-`;
-
-exports[`DELETE USERS 200 by UUID 2`] = `
-Array [
-  Object {
-    "enabled": true,
-    "type": "email_notification",
-    "userId": "uuid0000-fixe-df04-test-reason6922cd",
-  },
-  Object {
-    "enabled": false,
-    "type": "sms_notification",
-    "userId": "uuid0000-fixe-df04-test-reason6922cd",
-  },
-]
 `;
 
 exports[`GET USERS 200 by UUID 1`] = `

@@ -9,6 +9,7 @@ import openapiGlue from "fastify-openapi-glue";
 import logger from "./logger";
 import service from "./handlers/users";
 import { ValidationError } from "./domian/User";
+import { log } from "console";
 
 function build(options: FastifyServerOptions = {}) {
   const fastify = Fastify(options);
@@ -73,7 +74,7 @@ function build(options: FastifyServerOptions = {}) {
     request: FastifyRequest,
     reply: FastifyReply
   ) => {
-    console.log({ err: error }, "Error intercepted in handler");
+    //console.log({ err: error }, "Error intercepted in handler");
     let statusCode = error.statusCode;
     let response: { message: string; errors: any[]; statusCode?: number };
 
@@ -90,8 +91,17 @@ function build(options: FastifyServerOptions = {}) {
         message: `A validation error: ${error.message}`,
         errors: [error.message],
       };
+    } else if (error.serialization) {
+      request.log.error(
+        { serialization: error.serialization },
+        "Serialization failed: " + error.message
+      );
+      response = {
+        message: "Serializaation failed",
+        errors: [error.message],
+      };
     } else {
-      logger.info({ err: error }, "Error intercepted in handler");
+      request.log.error({ err: error }, "Error intercepted in handler");
       response = {
         message: "An error occurred...",
         errors: [error.message],
